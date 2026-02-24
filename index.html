@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omkar Kumbhar | DevOps Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Mono&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'], mono: ['Space Mono', 'monospace'] },
+                    colors: { dark: '#050505', glass: 'rgba(255, 255, 255, 0.03)', accent: '#818cf8' }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Theme Variables */
+        :root {
+            --bg-color: #050505;
+            --text-color: #f8fafc;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .light {
+            --bg-color: #f8fafc;
+            --text-color: #0f172a;
+            --card-bg: rgba(15, 23, 42, 0.05);
+            --border-color: rgba(15, 23, 42, 0.1);
+        }
+
+        body { background: var(--bg-color); color: var(--text-color); transition: background 0.3s, color 0.3s; }
+        
+        /* Functional Scroll fix for Fixed Nav */
+        section { scroll-margin-top: 6rem; }
+
+        .glass-card { 
+            background: var(--card-bg); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid var(--border-color); 
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card:hover { border-color: rgba(129, 140, 248, 0.4); transform: translateY(-5px); }
+        .section-padding { padding-top: 100px; padding-bottom: 100px; }
+        .nav-link { font-family: 'Space Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em; transition: 0.3s; }
+        .nav-link:hover { color: #818cf8; }
+        .glow-circle { position: absolute; width: 400px; height: 400px; background: rgba(129, 140, 248, 0.15); filter: blur(100px); border-radius: 50%; z-index: -1; }
+        
+        /* Ensure Ansible and others are bright */
+        .devicon-ansible-plain, .devicon-ansible-plain-wordmark { color: #EE0000; }
+    </style>
+</head>
+<body class="antialiased" id="body">
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed w-full z-50 px-6 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="font-mono font-bold text-accent text-xl tracking-tighter">DevOpsWithOmkar</div>
+            <div class="hidden md:flex items-center glass-card px-8 py-3 rounded-full gap-8">
+                <a href="#profile" class="nav-link uppercase">Profile</a>
+                <a href="#tools" class="nav-link uppercase">TechTools</a>
+                <a href="#experience" class="nav-link uppercase">Experience</a>
+                <a href="#education" class="nav-link uppercase">Education</a>
+                <a href="#contact" class="nav-link uppercase font-bold text-accent italic">Connect</a>
+                <!-- Light/Dark Toggle Button -->
+                <button onclick="toggleTheme()" class="text-accent hover:scale-110 transition">
+                    <i class="fas fa-circle-half-stroke text-lg" id="theme-icon"></i>
+                </button>
+            </div>
+            <!-- Mobile Menu Toggle -->
+            <div class="md:hidden glass-card p-3 rounded-xl flex gap-4 items-center">
+                <button onclick="toggleTheme()"><i class="fas fa-moon text-accent"></i></button>
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: PROFILE (HERO) -->
+    <section id="profile" class="min-h-screen flex flex-col justify-center relative px-6 overflow-hidden">
+        <div class="glow-circle top-20 right-10"></div>
+        <div class="max-w-6xl mx-auto">
+            <p class="font-mono text-accent mb-4 tracking-[0.3em] uppercase text-sm">IT Operations // Jr. DevOps Engineer</p>
+            <h1 class="text-6xl md:text-8xl font-extrabold mb-8 tracking-tighter leading-none">
+                OMKAR <br> <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent to-purple-400">KUMBHAR</span>
+            </h1>
+            <div class="font-mono text-xl md:text-2xl text-slate-400 mb-10 h-10">
+                <span id="typewriter"></span><span class="animate-pulse text-accent">|</span>
+            </div>
+            <p class="max-w-xl text-slate-400 leading-relaxed mb-12">
+                Specializing in high-availability systems on <strong>AWS | GCP</strong>. Expert in bridging the gap between manual operations and cloud-native automation.
+            </p>
+            <div class="flex gap-6">
+                <a href="#contact" class="bg-accent text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition shadow-lg shadow-accent/20">Let's Talk</a>
+                <a href="https://linkedin.com/in/omkarskumbhar11" target="_blank" class="glass-card px-8 py-4 rounded-2xl flex items-center gap-2"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+<!-- SECTION 2: DEVOPS TOOLS -->
+    <section id="tools" class="section-padding px-6 bg-[#080808]/10">
+        <div class="max-w-6xl mx-auto">
+                        <h2 class="text-4xl font-bold mb-16 flex justify-center items-center gap-4">
+                <span class="text-accent font-mono text-xl"></span> 1. Tech Tools
+            </h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- AWS -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-amazonwebservices-plain-wordmark colored text-4xl"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">AWS Cloud</p>
+                </div>
+                <!-- GCP -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-googlecloud-plain colored text-4xl"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Google Cloud</p>
+                </div>
+                <!-- K8s -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-kubernetes-plain colored text-4xl"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Orchestration</p>
+                </div>
+                <!-- Docker -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-docker-plain colored text-4xl"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Containers</p>
+                </div>
+                <!-- Terraform -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-terraform-plain-wordmark colored text-4xl"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">IaC</p>
+                </div>
+                <!-- Grafana - UPDATED ICON -->
+               <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+    <!-- Use "plain" instead of "original" to allow color overriding -->
+    <i class="devicon-grafana-plain text-4xl" style="color: #ff0000 !important;"></i>
+    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Grafana</p>
+</div>
+                <!-- Prometheus -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-prometheus-original colored text-4xl"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Prometheus</p>
+                </div>
+                <!-- Git -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-git-plain colored text-4xl"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Version Control</p>
+                </div>
+                <!-- GitHub -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-github-original text-4xl"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">GitHub</p>
+                </div>
+                <!-- Ansible - UPDATED RED ICON -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-ansible-plain text-4xl" style="color: #EE0000;"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Ansible</p>
+                </div>
+                <!-- Linux -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-linux-plain text-4xl"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Linux OS</p>
+                </div>
+                <!-- Jenkins -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-jenkins-plain colored text-4xl"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Jenkins CICD</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: WORK EXPERIENCE -->
+    <section id="experience" class="section-padding px-6">
+        <div class="max-w-5xl mx-auto">
+                        <h2 class="text-4xl font-bold mb-16 flex justify-center items-center gap-4">
+                <span class="text-accent font-mono text-xl"></span> 2. Experience
+            </h2>
+            
+            <div class="space-y-12">
+                <!-- Excellex -->
+                <div class="glass-card p-8 md:p-12 rounded-[2rem]">
+                    <div class="flex flex-col md:flex-row justify-between mb-8">
+                        <div>
+                            <h3 class="text-2xl font-bold">IT Operations | Jr. DevOps Engineer</h3>
+                            <p class="text-accent font-mono mt-2">Excellex Technologies Pvt. Ltd. (Client: NSE Mumbai)</p>
+                        </div>
+                        <span class="text-slate-500 font-mono text-sm mt-4 md:mt-0">May 2024 — Present</span>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <div>
+                            <p class="font-bold mb-4 uppercase text-xs tracking-widest text-accent">Exchange Applications</p>
+                            <ul class="space-y-3 text-sm text-slate-400">
+                                <li>• Production management of IPO, CBR, RFQ, NDM, and EBP apps.</li>
+                                <li>• UAT and Production release activities for Linux VM environments.</li>
+                                <li>• Log analysis and health checks via ITRS Geneos.</li>
+                                <li>• Change and Release management via ALM.</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <p class="font-bold mb-4 uppercase text-xs tracking-widest text-accent">Cloud - PocketPOS</p>
+                            <ul class="space-y-3 text-sm text-slate-400">
+                                <li>• High Availability setup using Load Balancers & Auto Scaling.</li>
+                                <li>• IAM Roles/Policies & S3 Lifecycle Management.</li>
+                                <li>• RDS MySQL database maintenance with Read Replicas.</li>
+                                <li>• Containerized app deployments via K8s and Docker.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NTPC -->
+                <div class="glass-card p-8 md:p-12 rounded-[2rem]">
+                    <div class="flex flex-col md:flex-row justify-between mb-4">
+                        <div>
+                            <h3 class="text-2xl font-bold">Trainee Operation Engineer</h3>
+                            <p class="text-accent font-mono mt-2">NTPC Ltd.</p>
+                        </div>
+                        <span class="text-slate-500 font-mono text-sm mt-4 md:mt-0">Oct 2021 — Jan 2023</span>
+                    </div>
+                    <p class="text-slate-400 text-sm leading-relaxed italic">
+                        Ensured 24/7 reliability of mission-critical plant operations, monitoring system alarms, parameters, and logs while conducting preventive maintenance reporting.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: EDUCATION -->
+    <section id="education" class="section-padding px-6 bg-[#080808]/10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-16 flex justify-center items-center gap-4">
+                <span class="text-accent font-mono text-xl"></span> 3. Education
+            </h2>
+            <div class="glass-card p-12 rounded-[3rem]">
+                <i class="fas fa-university text-accent text-5xl mb-6"></i>
+                <h3 class="text-2xl font-bold mb-2">Bachelor of Engineering (B.E.)</h3>
+                <p class="text-slate-300">Tatyasaheb Kore College of Engineering & Technology</p>
+                <p class="text-slate-500 font-mono mt-4">Shivaji University, Kolhapur | 2017 — 2021</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: CONTACT -->
+    <section id="contact" class="section-padding px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-extrabold mb-8 tracking-tighter">Ready to Automate?</h2>
+            <p class="text-slate-400 mb-12">I'm currently available for DevOps and IT Operations roles in Mumbai or Remote.</p>
+            
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Phone -->
+                <a href="tel:+919075623562" class="glass-card p-8 rounded-3xl flex items-center justify-center gap-4 group">
+                    <div class="p-4 bg-accent/10 rounded-2xl group-hover:bg-accent group-hover:text-white transition">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <span class="font-bold text-lg italic">Call Me Now</span>
+                </a>
+                <!-- Email -->
+                <a href="mailto:omkarskumbhar11@gmail.com" class="glass-card p-8 rounded-3xl flex items-center justify-center gap-4 group">
+                    <div class="p-4 bg-accent/10 rounded-2xl group-hover:bg-accent group-hover:text-white transition">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <span class="font-bold text-lg italic">Send an Email</span>
+                </a>
+            </div>
+
+            <div class="mt-20 flex justify-center gap-8">
+                <a href="https://linkedin.com/in/omkarskumbhar11" target="_blank" class="text-slate-500 hover:text-accent transition text-2xl"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/omkarskumbhar11" target="_blank" class="text-slate-500 hover:text-accent transition text-2xl"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center text-slate-700 font-mono text-[10px] uppercase tracking-widest">
+        &copy; 2024 Omkar Sunil Kumbhar // Built with Infrastructure-as-Code Mindset
+    </footer>
+
+    <script>
+        // Theme Toggle Logic
+        function toggleTheme() {
+            const body = document.getElementById('body');
+            const icon = document.getElementById('theme-icon');
+            body.classList.toggle('light');
+            
+            if (body.classList.contains('light')) {
+                icon.classList.replace('fa-circle-half-stroke', 'fa-moon');
+            } else {
+                icon.classList.replace('fa-moon', 'fa-circle-half-stroke');
+            }
+        }
+
+        // Typewriter Effect
+        const phrases = ["Building Scalable CI/CD Pipelines", "AWS & GCP Cloud Operations", "Managing NSE Exchange Production"];
+        let i = 0, j = 0, current = "", deleting = false;
+        function type() {
+            const full = phrases[i];
+            current = deleting ? full.substring(0, j--) : full.substring(0, j++);
+            document.getElementById("typewriter").innerHTML = current;
+            if (!deleting && j > full.length) { deleting = true; setTimeout(type, 2000); }
+            else if (deleting && j === 0) { deleting = false; i = (i + 1) % phrases.length; setTimeout(type, 500); }
+            else setTimeout(type, deleting ? 50 : 100);
+        }
+        window.onload = type;
+    </script>
+</body>
+</html>
