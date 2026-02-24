@@ -60,14 +60,19 @@
         
         /* Ensure Ansible and others are bright */
         .devicon-ansible-plain, .devicon-ansible-plain-wordmark { color: #EE0000; }
+        
+        /* Mobile Menu fix */
+        [x-cloak] { display: none !important; }
     </style>
 </head>
-<body class="antialiased" id="body">
+<body class="antialiased" id="body" x-data="{ mobileMenu: false }">
 
     <!-- Top Navigation Bar -->
     <nav class="fixed w-full z-50 px-6 py-6">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="font-mono font-bold text-accent text-xl tracking-tighter">DevOpsWithOmkar</div>
+            
+            <!-- Desktop Menu -->
             <div class="hidden md:flex items-center glass-card px-8 py-3 rounded-full gap-8">
                 <a href="#profile" class="nav-link uppercase">Profile</a>
                 <a href="#tools" class="nav-link uppercase">TechTools</a>
@@ -79,11 +84,29 @@
                     <i class="fas fa-circle-half-stroke text-lg" id="theme-icon"></i>
                 </button>
             </div>
-            <!-- Mobile Menu Toggle -->
-            <div class="md:hidden glass-card p-3 rounded-xl flex gap-4 items-center">
-                <button onclick="toggleTheme()"><i class="fas fa-moon text-accent"></i></button>
-                <i class="fas fa-bars"></i>
+
+            <!-- Mobile Menu Toggles -->
+            <div class="md:hidden flex gap-4 items-center">
+                <button onclick="toggleTheme()" class="text-accent"><i class="fas fa-moon text-accent"></i></button>
+                <button @click="mobileMenu = !mobileMenu" class="glass-card p-3 rounded-xl">
+                    <i class="fas fa-bars" x-show="!mobileMenu"></i>
+                    <i class="fas fa-times" x-show="mobileMenu"></i>
+                </button>
             </div>
+        </div>
+
+        <!-- Mobile Drawer (New for Compatibility) -->
+        <div x-show="mobileMenu" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             x-cloak 
+             class="md:hidden mt-4 glass-card rounded-2xl p-6 flex flex-col gap-4 text-center">
+            <a href="#profile" @click="mobileMenu = false" class="nav-link uppercase">Profile</a>
+            <a href="#tools" @click="mobileMenu = false" class="nav-link uppercase">TechTools</a>
+            <a href="#experience" @click="mobileMenu = false" class="nav-link uppercase">Experience</a>
+            <a href="#education" @click="mobileMenu = false" class="nav-link uppercase">Education</a>
+            <a href="#contact" @click="mobileMenu = false" class="nav-link uppercase text-accent font-bold">Connect</a>
         </div>
     </nav>
 
@@ -101,8 +124,14 @@
             <p class="max-w-xl text-slate-400 leading-relaxed mb-12">
                 Specializing in high-availability systems on <strong>AWS | GCP</strong>. Expert in bridging the gap between manual operations and cloud-native automation.
             </p>
-            <div class="flex gap-6">
+            <div class="flex flex-wrap gap-6">
                 <a href="#contact" class="bg-accent text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition shadow-lg shadow-accent/20">Let's Talk</a>
+                
+                <!-- NEW: RESUME DOWNLOAD BUTTON -->
+                <a href="resume.pdf" download="Omkar_Kumbhar_Resume.pdf" class="glass-card px-8 py-4 rounded-2xl font-bold flex items-center gap-2 hover:bg-accent hover:text-white transition">
+                    <i class="fas fa-file-download"></i> Resume
+                </a>
+
                 <a href="https://linkedin.com/in/omkarskumbhar11" target="_blank" class="glass-card px-8 py-4 rounded-2xl flex items-center gap-2"><i class="fab fa-linkedin"></i> LinkedIn</a>
             </div>
         </div>
@@ -111,7 +140,7 @@
 <!-- SECTION 2: DEVOPS TOOLS -->
     <section id="tools" class="section-padding px-6 bg-[#080808]/10">
         <div class="max-w-6xl mx-auto">
-                        <h2 class="text-4xl font-bold mb-16 flex justify-center items-center gap-4">
+            <h2 class="text-4xl font-bold mb-16 flex justify-center items-center gap-4 text-center">
                 <span class="text-accent font-mono text-xl"></span> 1. Tech Tools
             </h2>
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
@@ -140,12 +169,11 @@
                     <i class="devicon-terraform-plain-wordmark colored text-4xl"></i>
                     <p class="mt-4 font-mono text-xs text-slate-400 uppercase">IaC</p>
                 </div>
-                <!-- Grafana - UPDATED ICON -->
-               <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
-    <!-- Use "plain" instead of "original" to allow color overriding -->
-    <i class="devicon-grafana-plain text-4xl" style="color: #ff0000 !important;"></i>
-    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Grafana</p>
-</div>
+                <!-- Grafana -->
+                <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
+                    <i class="devicon-grafana-plain text-4xl" style="color: #ff0000 !important;"></i>
+                    <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Grafana</p>
+                </div>
                 <!-- Prometheus -->
                 <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
                     <i class="devicon-prometheus-original colored text-4xl"></i>
@@ -161,7 +189,7 @@
                     <i class="devicon-github-original text-4xl"></i>
                     <p class="mt-4 font-mono text-xs text-slate-400 uppercase">GitHub</p>
                 </div>
-                <!-- Ansible - UPDATED RED ICON -->
+                <!-- Ansible -->
                 <div class="glass-card p-8 rounded-3xl text-center flex flex-col items-center">
                     <i class="devicon-ansible-plain text-4xl" style="color: #EE0000;"></i>
                     <p class="mt-4 font-mono text-xs text-slate-400 uppercase">Ansible</p>
@@ -183,7 +211,7 @@
     <!-- SECTION 3: WORK EXPERIENCE -->
     <section id="experience" class="section-padding px-6">
         <div class="max-w-5xl mx-auto">
-                        <h2 class="text-4xl font-bold mb-16 flex justify-center items-center gap-4">
+            <h2 class="text-4xl font-bold mb-16 flex justify-center items-center gap-4 text-center">
                 <span class="text-accent font-mono text-xl"></span> 2. Experience
             </h2>
             
@@ -197,7 +225,7 @@
                         </div>
                         <span class="text-slate-500 font-mono text-sm mt-4 md:mt-0">May 2024 — Present</span>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-8">
+                    <div class="grid md:grid-cols-2 gap-8 text-left">
                         <div>
                             <p class="font-bold mb-4 uppercase text-xs tracking-widest text-accent">Exchange Applications</p>
                             <ul class="space-y-3 text-sm text-slate-400">
@@ -228,7 +256,7 @@
                         </div>
                         <span class="text-slate-500 font-mono text-sm mt-4 md:mt-0">Oct 2021 — Jan 2023</span>
                     </div>
-                    <p class="text-slate-400 text-sm leading-relaxed italic">
+                    <p class="text-slate-400 text-sm leading-relaxed italic text-left md:text-center">
                         Ensured 24/7 reliability of mission-critical plant operations, monitoring system alarms, parameters, and logs while conducting preventive maintenance reporting.
                     </p>
                 </div>
@@ -244,7 +272,7 @@
             </h2>
             <div class="glass-card p-12 rounded-[3rem]">
                 <i class="fas fa-university text-accent text-5xl mb-6"></i>
-                <h3 class="text-2xl font-bold mb-2">Bachelor of Engineering (B.E.)</h3>
+                <h3 class="text-2xl font-bold mb-2 text-center">Bachelor of Engineering (B.E.)</h3>
                 <p class="text-slate-300">Tatyasaheb Kore College of Engineering & Technology</p>
                 <p class="text-slate-500 font-mono mt-4">Shivaji University, Kolhapur | 2017 — 2021</p>
             </div>
